@@ -1,0 +1,17 @@
+import { render, screen } from '@testing-library/react'
+
+import {{pascalCase component_name}} from './{{pascalCase component_name}}'
+
+const { getByText } = screen
+
+describe('<{{pascalCase component_name}}/>', () => {
+  beforeEach(() => {
+    render(<{{pascalCase component_name}} name="test" />)
+  })
+
+  it('should display the name test', () => {
+    const nameTest = getByText('test')
+
+    expect(nameTest).toBeInTheDocument()
+  })
+})
