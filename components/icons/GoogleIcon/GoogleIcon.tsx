@@ -7,6 +7,7 @@ export default function GoogleIcon(props: IconProps) {
       viewBox="0 0 961.2 980.79"
       width="24"
       height="24"
+      data-testid="googleIcon"
       {...props}
     >
       <title>google-37</title>

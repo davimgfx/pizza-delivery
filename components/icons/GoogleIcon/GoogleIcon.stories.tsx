@@ -3,12 +3,10 @@ import type { Meta, StoryObj } from '@storybook/react'
 import GoogleIcon from './GoogleIcon'
 
 const meta: Meta<typeof GoogleIcon> = {
-  title: 'components/GoogleIcon',
+  title: 'components/icon/GoogleIcon',
   component: GoogleIcon,
   tags: ['autodocs'],
-  args: {
-    name: 'name',
-  },
+
 }
 
 export default meta
