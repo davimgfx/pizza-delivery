@@ -6,6 +6,7 @@ import loading from './loading.svg'
 import mockUser from './mock-user.png'
 import google from './google.svg'
 import logo from './logo.png'
+import mockUser2 from "./mock-user-2.png"
 
 export {
   
@@ -16,4 +17,5 @@ export {
   mockUser,
   google,
   logo,
+  mockUser2
 }
