@@ -1,3 +1,16 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+.bg-primary-gradient {
+    background: linear-gradient(
+      157.81deg,
+      #ffb366 -21.24%,
+      -43.27%,
+      #fcac5d -21.24%,
+      #fca650 12.19%,
+      #FD9D3E 29.82%,
+      #ff9429 51.94%,
+      #ff9226 90.29%
+    );
+  }
