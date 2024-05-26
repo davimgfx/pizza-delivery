@@ -24,6 +24,8 @@ Um projeto de eccomerce de uma pizzaria. Fique a vontade para testa-lo.
 - Prettier <br />
 - Prisma <br />
 - React Icons <br />
+- React Input mask <br />
+- React reponsive <br />
 - React test library <br />
 - React toastify <br />
 - Shadcn <br />

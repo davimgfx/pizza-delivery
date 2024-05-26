@@ -1,4 +1,3 @@
-
 import heroBg from './hero-bg.png'
 import pizza from './pizza.png'
 import borderOrange from './border-orange.png'
@@ -6,10 +5,11 @@ import loading from './loading.svg'
 import mockUser from './mock-user.png'
 import google from './google.svg'
 import logo from './logo.png'
-import mockUser2 from "./mock-user-2.png"
-
+import mockUser2 from './mock-user-2.png'
+import ifood from './ifood.png'
+import uberEats from './ubereats.png'
+import homeimg from "./home_3d.png"
 export {
-  
   heroBg,
   pizza,
   borderOrange,
@@ -17,5 +17,8 @@ export {
   mockUser,
   google,
   logo,
-  mockUser2
+  mockUser2,
+  ifood,
+  uberEats,
+  homeimg
 }
