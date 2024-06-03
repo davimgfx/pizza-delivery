@@ -9,6 +9,7 @@ import mockUser2 from './mock-user-2.png'
 import ifood from './ifood.png'
 import uberEats from './ubereats.png'
 import heroimg from "./hero_3d.png"
+import userImage from "./userImage.png"
 export {
   heroBg,
   pizza,
@@ -20,5 +21,6 @@ export {
   mockUser2,
   ifood,
   uberEats,
-  heroimg
+  heroimg,
+  userImage
 }

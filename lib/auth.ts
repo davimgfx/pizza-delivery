@@ -18,7 +18,7 @@ export const authOptions: NextAuthOptions = {
   providers: [
     GitHubProvider({
       clientId: process.env.GITHUB_ID!,
-      clientSecret: process.env.GITHUB_SECRET!
+      clientSecret: process.env.GITHUB_SECRET!,
     }),
     GoogleProvider({
       clientId: process.env.GOOGLE_CLIENT_ID!,
@@ -66,6 +66,7 @@ export const authOptions: NextAuthOptions = {
             id: `${existingUser.id}`,
             name: existingUser.name,
             image: existingUser.image,
+            imageId: existingUser.imageId,
             email: existingUser.email,
           }
         } catch (error) {
@@ -75,23 +76,21 @@ export const authOptions: NextAuthOptions = {
     }),
   ],
   callbacks: {
-    async jwt({ token, user }) {
-      if (user) {
-        return {
-          ...token,
-          name: user.name,
-          image: user.image,
-        }
+    async jwt({ token, user, session }) {
+      const existingUser = await db.user.findUnique({
+        where: { email: token?.email },
+      })
+
+      return {
+        ...token,
+        image: existingUser!.image,
+        imageId: existingUser!.imageId,
       }
-      return token
     },
     async session({ session, token }) {
       return {
         ...session,
-        user: {
-          ...session.user,
-          name: token.name,
-        },
+        user: { ...session.user, imageId: token.imageId, image: token.image},
       }
     },
   },
