@@ -10,6 +10,13 @@ import ifood from './ifood.png'
 import uberEats from './ubereats.png'
 import heroimg from "./hero_3d.png"
 import userImage from "./userImage.png"
+import cart from "./cart.png"
+import location from "./location.png"
+import menu from "./menu.png"
+import motocycle from "./motocycle.png"
+import phoneApp from "./phoneApp.png"
+import logo_icon from './pizza-icon.png'
+
 export {
   heroBg,
   pizza,
@@ -22,5 +29,11 @@ export {
   ifood,
   uberEats,
   heroimg,
-  userImage
+  userImage,
+  cart,
+  location,
+  menu,
+  motocycle,
+  phoneApp ,
+  logo_icon
 }
