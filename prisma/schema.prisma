@@ -1,5 +1,4 @@
 // Não pode excluir client e db seu jegue
-
 generator client {
   provider = "prisma-client-js"
 }
@@ -9,6 +8,7 @@ datasource db {
   url      = env("DATABASE_URL")
 }
 
+// User authentication
 model Account {
   id                 String  @id @default(cuid())
   userId             String  @map("user_id")
@@ -62,4 +62,17 @@ model VerificationToken {
  
   @@unique([identifier, token])
   @@map("verificationtokens")
+}
+
+// Menu
+model Pizzas{
+  id String @id @default(cuid())
+  name String
+  priceSmall Float
+  priceMedium Float
+  priceLarge Float
+  description String
+  image String
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
 }
