@@ -1,5 +1,4 @@
 import heroBg from './hero-bg.png'
-import pizza from './pizza.png'
 import borderOrange from './border-orange.png'
 import loading from './loading.svg'
 import mockUser from './mock-user.png'
@@ -19,7 +18,6 @@ import logo_icon from './pizza-icon.png'
 
 export {
   heroBg,
-  pizza,
   borderOrange,
   loading,
   mockUser,
