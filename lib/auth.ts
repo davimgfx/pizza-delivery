@@ -85,6 +85,7 @@ export const authOptions: NextAuthOptions = {
 
       return {
         ...token,
+        id: existingUser!.id,
         image: existingUser!.image,
         imageId: existingUser!.imageId,
       }
@@ -92,7 +93,7 @@ export const authOptions: NextAuthOptions = {
     async session({ session, token }) {
       return {
         ...session,
-        user: { ...session.user, imageId: token.imageId, image: token.image},
+        user: { ...session.user, imageId: token.imageId, image: token.image, id: token.id},
       }
     },
   },
