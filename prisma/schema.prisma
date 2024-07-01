@@ -1,14 +1,13 @@
-// Não pode excluir client e db seu jegue
+datasource db {
+  provider = "postgresql"
+  url               = env("DATABASE_URL")
+  directUrl         = env("DIRECT_URL")
+}
+
 generator client {
   provider = "prisma-client-js"
 }
 
-datasource db {
-  provider = "postgresql"
-  url      = env("DATABASE_URL")
-}
-
-// User authentication
 model Account {
   id                 String  @id @default(cuid())
   userId             String  @map("user_id")
@@ -22,23 +21,23 @@ model Account {
   scope              String?
   id_token           String? @db.Text
   session_state      String?
- 
+
   user User @relation(fields: [userId], references: [id], onDelete: Cascade)
- 
+
   @@unique([provider, providerAccountId])
   @@map("accounts")
 }
- 
+
 model Session {
   id           String   @id @default(cuid())
   sessionToken String   @unique @map("session_token")
   userId       String   @map("user_id")
   expires      DateTime
   user         User     @relation(fields: [userId], references: [id], onDelete: Cascade)
- 
+
   @@map("sessions")
 }
- 
+
 model User {
   id            String    @id @default(cuid())
   name          String?
@@ -46,33 +45,83 @@ model User {
   password      String?
   emailVerified DateTime? @map("email_verified")
   image         String?
-  imageId     String?  
-  verifytoken String?
-  createdAt DateTime @default(now())
-  updatedAt DateTime @updatedAt
+  imageId       String?
+  verifytoken   String?
+  createdAt     DateTime  @default(now())
+  updatedAt     DateTime  @updatedAt
   accounts      Account[]
   sessions      Session[]
- 
+  addresses     Address[]
+  orders        Order[]   
+
   @@map("users")
 }
+
 model VerificationToken {
   identifier String
   token      String
   expires    DateTime
- 
+
   @@unique([identifier, token])
   @@map("verificationtokens")
 }
 
-// Menu
-model Pizzas{
-  id String @id @default(cuid())
-  name String
-  priceSmall Float
+model Pizzas {
+  id          String    @id @default(cuid())
+  name        String
+  priceSmall  Float
   priceMedium Float
-  priceLarge Float
+  priceLarge  Float
   description String
-  image String
-  createdAt DateTime @default(now())
-  updatedAt DateTime @updatedAt
+  image       String
+  createdAt   DateTime  @default(now())
+  updatedAt   DateTime  @updatedAt
+  orders      Order[]  
+
+  @@map("pizzas")
+}
+
+model Address {
+  id          String   @id @default(cuid())
+  userId      String   @map("user_id")
+  name       String?
+  street      String
+  number      String
+  neighborhood String
+  cep         String
+  complement  String?
+  phone String
+  user        User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@map("address")
+}
+
+model Drink {
+  id          String    @id @default(cuid())
+  name        String
+  price       Float
+  size        String
+  description String
+  image       String
+  createdAt   DateTime  @default(now())
+  updatedAt   DateTime  @updatedAt
+  orders      Order[]  
+
+  @@map("drinks")
+}
+
+model Order {
+  id        String    @id @default(cuid())
+  userId    String    @map("user_id")
+  orderDate DateTime  @default(now())
+  status    String
+  total     Float
+  addressId String?   @map("address_id")
+  pizzaId   String?   @map("pizza_id")
+  drinkId   String?   @map("drink_id")
+  user      User      @relation(fields: [userId], references: [id]) 
+  pizza     Pizzas?   @relation(fields: [pizzaId], references: [id]) 
+  drink     Drink?    @relation(fields: [drinkId], references: [id]) 
+
+  @@map("orders")
 }
