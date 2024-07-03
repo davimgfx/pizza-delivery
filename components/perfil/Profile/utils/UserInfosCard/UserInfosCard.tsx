@@ -1,12 +1,13 @@
 'use client'
 import { userImage } from '@/assets'
 import axios from 'axios'
-import { useSession } from 'next-auth/react'
+import { signOut, useSession } from 'next-auth/react'
 import { CldUploadWidget } from 'next-cloudinary'
 import Image from 'next/image'
 import { useState } from 'react'
 import { toast } from 'react-toastify'
 import { IoCamera } from 'react-icons/io5'
+import { Button } from '@/components/ui/button'
 
 export default function UserInfosCard() {
   const { data: session } = useSession()
@@ -19,7 +20,7 @@ export default function UserInfosCard() {
       session?.user?.email
     ) {
       setUploadedImageUrl(result.info.secure_url)
-      const response = await axios.post('api/user/upload-image', {
+      const response = await axios.post('api/v1/user/upload-image', {
         imageId: result.info.public_id,
         imageUrl: result.info.secure_url,
         email: session.user.email,
@@ -86,9 +87,9 @@ export default function UserInfosCard() {
         </p>
       </div>
 
-      <div >
-        <p>Sair da Conta</p>
-      </div>
+      <Button variant="outline" className="mb-2" onClick={() => signOut({ callbackUrl: './' })}>
+        Sair da Conta
+      </Button>
     </div>
   )
 }

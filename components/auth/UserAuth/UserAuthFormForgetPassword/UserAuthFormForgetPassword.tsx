@@ -16,7 +16,7 @@ export default function UserAuthFormForgetPassword() {
     ev.preventDefault()
     setIsLoading(true)
 
-    const response = await axios.post('api/email/forgetPassword', { email })
+    const response = await axios.post('api/v1/email/forgetPassword', { email })
 
     if (response.status === 200) {
       setIsLoading(false)

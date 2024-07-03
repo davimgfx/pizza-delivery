@@ -1,6 +1,5 @@
-"use client"
+'use client'
 
-import { db } from '@/lib/db'
 import { useSession } from 'next-auth/react'
 import React, { useEffect, useState } from 'react'
 import FormAddress from '../FormAddress/FormAddress'
@@ -30,18 +29,19 @@ export default function UserInfosAddress() {
   const [userAddresses, setUserAddresses] = useState<any[]>([])
 
   useEffect(() => {
-    const  getAddresses = async () => {
+    const getAddresses = async () => {
       try {
-        const response = await axios.get(`/api/user/address?userId=${session?.user?.id}`)
+        const response = await axios.get(
+          `/api/v1/user/address?userId=${session?.user?.id}`,
+        )
         setUserAddresses(response.data.data)
       } catch (error) {
         toast.error('Error fetching address')
       }
     }
-    if(session?.user?.id){
+    if (session?.user?.id) {
       getAddresses()
     }
-   
   }, [session])
 
   const handleDelete = async (id: string) => {

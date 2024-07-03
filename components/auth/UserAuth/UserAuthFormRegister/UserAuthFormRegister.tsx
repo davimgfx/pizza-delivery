@@ -110,10 +110,10 @@ export default function UserAuthFormRegister({
     setError({})
 
     try {
-      const response = await axios.post('/api/user/register', formData)
+      const response = await axios.post('/api/v1/user/register', formData)
 
       if (response.status === 200) {
-        await axios.post('/api/email/createdAccount', {
+        await axios.post('/api/v1/email/createdAccount', {
           email: formData.email,
           name: formData.name,
         })

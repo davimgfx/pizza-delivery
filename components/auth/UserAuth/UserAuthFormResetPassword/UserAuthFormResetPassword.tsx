@@ -37,7 +37,7 @@ export default function UserAuthFormResetPassword() {
       return toast.warn('As senhas são diferentes!')
     }
 
-    const response = await axios.post('../api/email/resetPassword', {
+    const response = await axios.post('../api/v1/email/resetPassword', {
       password: formData.password,
       token: params.token,
     })
