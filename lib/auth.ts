@@ -32,7 +32,7 @@ export const authOptions: NextAuthOptions = {
         email: {
           label: 'email',
           type: 'text',
-          placeholder: 'jsmith@gmai.com',
+          placeholder: 'jsmith@gmail.com',
         },
         password: {
           label: 'Password',
@@ -47,7 +47,7 @@ export const authOptions: NextAuthOptions = {
           }
 
           const existingUser = await db.user.findUnique({
-            where: { email: credentials.email },
+            where: { email: credentials.email || undefined },
           })
 
           if (!existingUser) {
@@ -78,23 +78,27 @@ export const authOptions: NextAuthOptions = {
     }),
   ],
   callbacks: {
-    async jwt({ token, user, session }) {
-      const existingUser = await db.user.findUnique({
-        where: { email: token?.email },
-      })
-
-      return {
-        ...token,
-        id: existingUser!.id,
-        image: existingUser!.image,
-        imageId: existingUser!.imageId,
+    async jwt({ token, user }) {
+      if (user) {
+        token.id = user.id
+        token.image = user.image
+      } else {
+        const existingUser = await db.user.findUnique({
+          where: { email: token.email || undefined },
+        })
+        if (existingUser) {
+          token.id = existingUser.id
+          token.image = existingUser.image
+          token.imageId = existingUser.imageId
+        }
       }
+      return token
     },
     async session({ session, token }) {
-      return {
-        ...session,
-        user: { ...session.user, imageId: token.imageId, image: token.image, id: token.id},
-      }
+      session.user.id = token.id as string
+      session.user.image = token.image as string | null | undefined
+      session.user.imageId = token.imageId as string | null | undefined
+      return session
     },
   },
 }
