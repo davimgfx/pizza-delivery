@@ -3,7 +3,7 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
-    "dev": "next dev",
+    "dev": "next",
     "build": "next build",
     "start": "next start",
     "lint": "next lint",
@@ -30,6 +30,8 @@
     "next": "14.2.3",
     "next-auth": "^4.24.7",
     "next-cloudinary": "^6.6.2",
+    "nextra": "^2.13.4",
+    "nextra-theme-docs": "^2.13.4",
     "nodemailer": "^6.9.13",
     "react": "^18",
     "react-dom": "^18",
