@@ -14,3 +14,12 @@
       #ff9226 90.29%
     );
   }
+
+
+.rdp-caption_start{
+  @apply p-4 w-auto space-y-4
+
+}
+.rdp-caption_end{
+  @apply  border-gray-300 border rounded-md shadow-md p-4 w-auto space-y-4
+}
