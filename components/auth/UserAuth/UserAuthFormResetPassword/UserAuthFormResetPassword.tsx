@@ -1,3 +1,4 @@
+"use client"
 import { SpinnerIcon } from '@/components/icons'
 import { Button } from '@/components/ui/button'
 import { Input } from '@/components/ui/input'
@@ -6,6 +7,7 @@ import { ChangeEvent, SyntheticEvent, useState } from 'react'
 import { useParams, useRouter } from 'next/navigation'
 import axios from 'axios'
 import { toast } from 'react-toastify'
+
 interface FormData {
   password: string
   confirmPassword: string
@@ -17,7 +19,7 @@ export default function UserAuthFormResetPassword() {
     password: '',
     confirmPassword: '',
   })
-
+  const route = useRouter()
   const params = useParams()
 
   const handleInputChange = (event: ChangeEvent<HTMLInputElement>) => {
@@ -45,6 +47,7 @@ export default function UserAuthFormResetPassword() {
     if (response.status === 200) {
       setIsLoading(false)
       toast.success('Senha redefinida com sucesso')
+      route.push("../../login")
     } else {
       setIsLoading(false)
       toast.warn(response.data.message)
@@ -80,7 +83,7 @@ export default function UserAuthFormResetPassword() {
               onChange={handleInputChange}
             />
           </div>
-          <Button disabled={isLoading} variant={'outline'}>
+          <Button disabled={isLoading} variant={'outline'} className='mt-2'>
             {isLoading && <SpinnerIcon className="mr-2 h-4 w-4 animate-spin" />}
             Redefinir a senha
           </Button>

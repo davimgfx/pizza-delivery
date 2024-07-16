@@ -2,17 +2,20 @@
 import { UserAuthFormRegister } from '@/components/auth'
 import Image from 'next/image'
 import { logo, mockUser2 } from '@/assets'
+import Link from 'next/link'
 
 export default function RegisterPage() {
   return (
     <section className="min-h-[100vh] flex ">
-      <Image
-        src={logo}
-        alt="Logo"
-        width={130}
-        height={130}
-        className="mt-4 ml-4 absolute top-4 left-4 cursor-pointer sm:hidden"
-      />
+      <Link href="./">
+        <Image
+          src={logo}
+          alt="Logo"
+          width={130}
+          height={130}
+          className="mt-4 ml-4 absolute top-4 left-4 cursor-pointer sm:hidden"
+        />
+      </Link>
 
       <div className="flex flex-1">
         <main className="flex flex-col items-center flex-1 flex-shrink-0 pb-8 border-r shadow-lg bg-studio border-default justify-center">

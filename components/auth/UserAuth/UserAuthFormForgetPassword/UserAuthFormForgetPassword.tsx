@@ -47,21 +47,24 @@ export default function UserAuthFormForgetPassword() {
               onChange={(ev) => setEmail(ev.target.value)}
             />
           </div>
-          <Link href="./login" className="text-sm text-muted-foreground">
-            <u>Lembrou a senha? Faça o login</u>
-          </Link>
-          <Button variant="outline" disabled={isLoading}>
+          <span className="text-sm text-muted-foreground">
+            Lembrou a senha?&nbsp;
+            <Link href="./login">
+              <u>Faça o login</u>
+            </Link>
+          </span>
+          <Button variant="outline" disabled={isLoading} className="mt-2">
             {isLoading && <SpinnerIcon className="mr-2 h-4 w-4 animate-spin" />}
             Recuperar senha
           </Button>
         </div>
       </form>
-      <Link
-        href="cadastro"
-        className="text-sm text-muted-foreground text-center"
-      >
-        <u>Não tem uma conta ainda ? Crie agora</u>
-      </Link>
+      <span className="text-sm text-muted-foreground text-center">
+        Não tem uma conta ainda?&nbsp;
+        <Link href="cadastro">
+          <u>Crie agora</u>
+        </Link>
+      </span>
     </div>
   )
 }
